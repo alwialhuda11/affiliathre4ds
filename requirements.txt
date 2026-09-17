@@ -1,0 +1,9 @@
+# CDP & Browser
+websocket-client>=1.0.0
+requests>=2.28.0
+
+# JSON handling (built-in, but listed for clarity)
+# json - built-in
+
+# Telegram notifications (optional)
+# requests - already listed above

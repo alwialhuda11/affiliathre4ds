@@ -1,0 +1,80 @@
+[
+    {
+        "domain": ".threads.com",
+        "expirationDate": 1825334023.582458,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "csrftoken",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "m7oMWyWuo-Z6XFbjYSFw7s"
+    },
+    {
+        "domain": ".threads.com",
+        "expirationDate": 1791378822,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "dpr",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1.25"
+    },
+    {
+        "domain": ".threads.com",
+        "expirationDate": 1798550023.582759,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ds_user_id",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "63060471654"
+    },
+    {
+        "domain": ".threads.com",
+        "expirationDate": 1816116954.304075,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "ig_did",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "A98DA782-21F7-4504-A3ED-D9E211AF796A"
+    },
+    {
+        "domain": ".threads.com",
+        "expirationDate": 1819142282.181608,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "mid",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "al6QigALAAHtEbtX-ffmZo2ZaSfL"
+    },
+    {
+        "domain": ".threads.com",
+        "expirationDate": 1822310020.480324,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "sessionid",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "63060471654%3AK2RZD1BeDL5bJG%3A15%3AAYm7UT7p1u6AKhPfT6TOyMbWSstv0suSXQrhS1FFwQ"
+    }
+]

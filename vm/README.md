@@ -1,120 +1,108 @@
-# VM Setup — Threads Bot
+# VM Setup — Threads Bot (MIRROR PERSIS VPS)
 
-## Arsitektur
+## Apa yang berubah vs versi sebelumnya
+
+Repo sekarang **flat layout** — identik dengan `/home/ubuntu` di VPS:
 
 ```
-VM boot (otomatis tiap 2 jam ke-reset)
-  │
-  ├─ 1. git pull code + state dari GitHub (affiliathre4ds)
-  ├─ 2. Install Chrome + Python deps (sekali)
-  ├─ 3. Restore replied_posts.json + posted_links.json dari state/
-  ├─ 4. Launch watchdog (jaga Chrome)
-  ├─ 5. Launch 6 bot threads
-  └─ 6. State sync loop (push state ke GitHub tiap 5 menit)
+/home/ubuntu (di VM, hasil clone)
+├── threads_bot_oliviapicks.py        ← bot (sama persis VPS)
+├── threads_bot_lanadealsrey.py
+├── threads_bot_selenasupply.py
+├── threads_bot_avelinefinds.py
+├── threads_bot_kailaaak72.py
+├── threads_bot_renaisher2.py
+├── threads_bot_kailaaak7.py          ← cadangan
+├── threads_bot_new_account.py        ← cadangan
+├── threads_bot_renaisher.py          ← cadangan
+├── watchdog_threads.py               ← jaga Chrome (port 9222-9228)
+├── keep_bot_alive.sh                 ← restart bot mati
+├── inject_cookies.py                 ← inject cookies via CDP
+├── config/affiliate-links.json       ← link affiliate asli
+├── cookies/*.json                    ← 6 akun cookies
+├── state/*.json                      ← replied_posts, posted_links (sync)
+└── vm/
+    ├── bootstrap.sh                  ← jalan tiap VM boot
+    └── state-sync.sh                 ← cron tiap 5 menit
 ```
 
-## Setup di VM
+## Kenapa path /home/ubuntu dipertahankan
 
-### Step 1: Set GitHub Token (sekali)
+`watchdog_threads.py` hardcode `--user-data-dir=/home/ubuntu/chrome-profile-*`
+dan `keep_bot_alive.sh` hardcode `cd /home/ubuntu`. Clone ke path yang sama =
+**nol perubahan code**, Chrome profiles, cron, semuanya identik.
 
-```bash
-# Di VM, buat file credentials
-mkdir -p ~/.config/gh
-cat > ~/.git-credentials << 'EOF'
-https://<TOKEN>@github.com
-EOF
-chmod 600 ~/.git-credentials
-git config --global credential.helper store
+## Setup di VM (sekali)
+
+### 1. Buat GitHub Token
+
+GitHub → Settings → Developer settings → Personal access tokens → Fine-grained:
+- Repo: `alwialhuda11/affiliathre4ds` (Only select repositories)
+- Permissions: **Contents: Read and write** (untuk state sync push)
+
+### 2. Paste bootstrap.sh ke startup script VM
+
+Ganti `GH_TOKEN_DI_SINI` dengan token lo, lalu paste isi `vm/bootstrap.sh` ke:
+
+| Platform | Lokasi |
+|----------|--------|
+| Oracle Cloud | Instances → Create → Advanced Details → Startup Script |
+| GCP | Compute Engine → Create VM → Advanced → Management → Automation |
+| AWS | EC2 → Launch → Advanced Details → User Data |
+| DigitalOcean | Create Droplet → Advanced Options → User Data |
+
+Token disimpan di **cloud console** (bukan di disk VM) → selamat tiap reset.
+
+### 3. Boot pertama
+
+Tunggu 3-4 menit (install Chrome + clone + inject cookies + launch bot).
+Cek: `/var/log/threads-bot-bootstrap.log`
+
+## Apa yang terjadi tiap boot (otomatis)
+
 ```
-
-Token butuh scope: `repo` (private repo access)
-
-### Step 2: Set Startup Script (per platform)
-
-**Oracle Cloud:**
-1. Cloud Console → Instances → Create → Advanced Details
-2. Paste isi `vm/bootstrap.sh` ke field "Startup Script"
-3. Create instance
-
-**GCP:**
-1. Compute Engine → VM instances → Create
-2. Advanced options → Management → Automation
-3. Paste isi `vm/bootstrap.sh`
-4. Create
-
-**AWS:**
-1. EC2 → Launch Instance
-2. Advanced Details → User Data
-3. Paste isi `vm/bootstrap.sh`
-4. Launch
-
-**Manual (kalau gak ada startup script):**
-```bash
-# SSH ke VM, jalankan:
-bash -c 'curl -sL https://raw.githubusercontent.com/alwialhuda11/affiliathre4ds/main/vm/bootstrap.sh | bash'
-```
-
-### Step 3: Verify
-
-```bash
-# Tunggu 2-3 menit setelah boot, lalu:
-tail -f /var/log/threads-bot-bootstrap.log
-# Harus lihat: "=== BOOTSTRAP COMPLETE ==="
-# Dan: "Started oliviapicks (PID ...)" dst
-
-# Cek bot jalan:
-ps aux | grep threads_bot
-
-# Cek Chrome jalan:
-ps aux | grep chrome
+VM reset (tiap 2 jam)
+  ↓ cloud-init jalankan bootstrap.sh
+1. apt install python3, git, Chrome, cron
+2. git clone → /home/ubuntu (layout identik VPS)
+3. Restore state: replied_posts.json + posted_links.json
+   (dedup history — gak dobel comment ke post yang sama)
+4. Start watchdog → Chrome launch port 9222-9228
+5. Tunggu CDP siap → inject cookies per akun
+   (VPS: cookies baked sekali; VM: profile reset → inject tiap boot)
+6. keep_bot_alive.sh → launch 6 bot
+7. Crontab: watchdog guard + keep_alive + state-sync (tiap 5 menit)
 ```
 
 ## State Management
 
-| File | Fungsi | Sync |
-|------|--------|------|
-| `replied_posts.json` | Anti-duplicate comment | Push tiap 5 menit |
-| `posted_links.json` | Anti-duplicate affiliate link | Push tiap 5 menit |
-| `recent_comments.json` | Anti-copy-paste comment | Push tiap 5 menit |
-| `recent_categories.json` | Category rotation | Push tiap 5 menit |
+| File | Fungsi | Arah sync |
+|------|--------|-----------|
+| `replied_posts.json` | Anti-duplicate comment | VM → GitHub tiap 5 menit |
+| `posted_links.json` | Anti-duplicate affiliate link | VM → GitHub tiap 5 menit |
+| `recent_comments.json` | Anti-copy-paste comment | VM → GitHub |
+| `recent_categories.json` | Category rotation | VM → GitHub |
 
-State di-commit ke GitHub tiap 5 menit oleh sync loop. Tiap VM boot, state terbaru di-pull dari GitHub.
+Tiap boot: GitHub → VM (restore). Tiap 5 menit: VM → GitHub (push).
+**Max data loss: 5 menit** (kalau VM reset tepat sebelum sync).
 
-**Max data loss:** 5 menit (kalau VM reset tepat sebelum sync)
+## Update cookies / link affiliate
 
-## Cookies
-
-Cookies tersimpan di `cookies/<account>.json` (private repo).
-
-Untuk update cookies:
 ```bash
-# Di VPS / local:
-cp cookies_baru.json cookies/oliviapicks.json
-git add cookies/
+# Dari mana aja (VPS / local):
+cp cookies_baru.json cookies/oliviapicks.json   # atau edit config/affiliate-links.json
+git add cookies/ config/affiliate-links.json
 git commit -m "update cookies oliviapicks"
 git push
+
+# VM otomatis pull di boot berikutnya (maks 2 jam lagi)
 ```
 
-VM otomatis pull cookies terbaru tiap boot.
+## Catatan penting
 
-## Troubleshooting
-
-**Bot gak jalan setelah boot:**
-```bash
-cat /var/log/threads-bot-bootstrap.log
-# Cari error, biasanya: Chrome belum install / cookies expired
-```
-
-**Cookies expired:**
-```bash
-# Cek log bot:
-tail -f bot-oliviapicks.log
-# Kalau "Reply counter NOT found" → cookies perlu update
-# Update cookies di GitHub, VM pull di boot berikutnya
-```
-
-**Chrome crash:**
-```bash
-# Watchdog otomatis restart, tapi kalau mati total:
-bash keep_bot_alive.sh
-```
+- **RAM:** 6 Chrome + 6 bot ≈ 1.5-2 GB. VM minimal 2 GB RAM.
+- **Daily reset 03:00 gak dipasang** — VM udah reset tiap 2 jam, lebih sering.
+- **Jangan jalankan akun yang sama di VPS + VM barengan** — session conflict.
+  Kalau VPS masih hidup, matikan bot VPS dulu (`pkill -f threads_bot`).
+- **IP berubah tiap reset** — normal untuk free tier, Threads gak masalah
+  selama cookies valid.

@@ -3,11 +3,10 @@
 logs/
 
 # Cookies (sensitif)
-cookies/*.json
-!cookies/.gitkeep
+# cookies: intentionally tracked (private repo, VM butuh tiap boot)
 
 # Config
-config/affiliate-links.json
+# config/affiliate-links.json: intentionally tracked (private repo)
 
 # Python
 __pycache__/

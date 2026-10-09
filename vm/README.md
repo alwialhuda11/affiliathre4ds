@@ -106,3 +106,51 @@ git push
   Kalau VPS masih hidup, matikan bot VPS dulu (`pkill -f threads_bot`).
 - **IP berubah tiap reset** — normal untuk free tier, Threads gak masalah
   selama cookies valid.
+
+
+## RAM Mitigation (v2 — buat VM RAM-capped)
+
+VM lo: 7.7GB RAM tapi 7.2GB udah kepake service lain (sisa 567Mi available).
+Bootstrap v2 punya 4 lapis pertahanan:
+
+### 1. Swap 4GB otomatis
+- Dibuat tiap boot (`/swapfile`) — VM reset tiap 2 jam gak masalah
+- `swappiness=60` — Chrome boleh page out agresif
+- Total virtual RAM: 7.7GB + 4GB swap = ~11.7GB
+
+### 2. Chrome di-tune hemat RAM
+- `--renderer-process-limit=1` (bukan 2) — hemat ~80MB/akun
+- `--js-flags=--max-old-space-size=48` (bukan 96) — heap JS Chrome dipotong
+- `--disk-cache-size=1MB` (bukan 10MB)
+- Perkiraan: ~170MB/Chrome (bukan ~300MB)
+
+### 3. RAM gate + accounts.txt
+Bootstrap cek `free -m` saat boot:
+- **available ≥ 1.2GB** → semua 6 akun jalan
+- **available < 1.2GB** → cuma 3 akun (avelinefinds + oliviapicks + selenasupply)
+
+3 akun inactive: Chrome port-nya gak di-launch sama sekali (watchdog di-patch
+via regex hapus entry CHROME_CMDS), bot-nya juga gak start.
+~3 Chrome × 170MB + 3 bot × 25MB = **~580MB** — muat di RAM yang tersisa.
+
+Mau ganti akun mana yang jalan di VM? Edit `accounts.txt` di home VM,
+atau ubah THREE_ACCOUNTS di bootstrap.sh.
+
+### 4. earlyoom (best-effort)
+Kalau install berhasil: throttle/kill proses paling boros RAM sebelum
+kernel OOM killer berantakan semua.
+
+### Estimasi beban total VM (3 akun mode)
+| Komponen | RAM |
+|----------|-----|
+| 3 Chrome headless (tuned) | ~510 MB |
+| 3 bot Python | ~75 MB |
+| watchdog + cron | ~15 MB |
+| **Total bot** | **~600 MB** |
+| Sisa RAM available + swap | buffer OOM |
+
+### Kalau masih OOM di VM
+1. Cek `/var/log/threads-bot-bootstrap.log` bagian "Top RAM consumers"
+2. Service apa yang makan 7.2GB itu kemungkinan besar service VM provider
+   — coba `systemctl list-units --type=service --state=running`
+3. Kalau perlu, kurangi lagi ke 2 akun (edit THREE_ACCOUNTS jadi 2 baris)

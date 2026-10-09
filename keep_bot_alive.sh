@@ -7,15 +7,12 @@ cd /home/ubuntu || exit 1
 
 PY=/usr/bin/python3
 
-# account : script
-BOTS="
-threads_bot_oliviapicks.py
-threads_bot_lanadealsrey.py
-threads_bot_selenasupply.py
-threads_bot_renaisher2.py
-threads_bot_kailaaak72.py
-threads_bot_avelinefinds.py
-"
+# account : script (override via accounts.txt — buat VM RAM-capped)
+if [ -f accounts.txt ]; then
+    BOTS=$(cat accounts.txt | tr '\n' ' ')
+else
+    BOTS="threads_bot_oliviapicks.py threads_bot_lanadealsrey.py threads_bot_selenasupply.py threads_bot_renaisher2.py threads_bot_kailaaak72.py threads_bot_avelinefinds.py"
+fi
 
 for script in $BOTS; do
     if pgrep -f "python3 -u $script" > /dev/null 2>&1; then
@@ -25,5 +22,5 @@ for script in $BOTS; do
     name="${name%.py}"
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $script mati -> restart"
     setsid $PY -u "$script" >> "bot-${name}.log" 2>&1 < /dev/null &
-    sleep 2
+    sleep 8
 done

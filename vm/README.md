@@ -19,7 +19,7 @@ Repo sekarang **flat layout** — identik dengan `/home/ubuntu` di VPS:
 ├── keep_bot_alive.sh                 ← restart bot mati
 ├── inject_cookies.py                 ← inject cookies via CDP
 ├── config/affiliate-links.json       ← link affiliate asli
-├── cookies/*.json                    ← 6 akun cookies
+├── cookies/*.json                    ← 5 akun (selenasupply dihapus — kena ban) cookies
 ├── state/*.json                      ← replied_posts, posted_links (sync)
 └── vm/
     ├── bootstrap.sh                  ← jalan tiap VM boot
@@ -126,7 +126,7 @@ Bootstrap v2 punya 4 lapis pertahanan:
 
 ### 3. RAM gate + accounts.txt
 Bootstrap cek `free -m` saat boot:
-- **available ≥ 1.2GB** → semua 6 akun jalan
+- **available ≥ 1.2GB** → semua 5 akun (selenasupply dihapus — kena ban) jalan
 - **available < 1.2GB** → cuma 3 akun (avelinefinds + oliviapicks + selenasupply)
 
 3 akun inactive: Chrome port-nya gak di-launch sama sekali (watchdog di-patch

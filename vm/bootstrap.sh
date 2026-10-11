@@ -105,7 +105,6 @@ chown ubuntu:ubuntu ./*.json 2>/dev/null || true
 AVAIL_MB=$(free -m | awk '/^Mem:/{print $7}')
 ALL_ACCOUNTS="threads_bot_oliviapicks.py
 threads_bot_lanadealsrey.py
-threads_bot_selenasupply.py
 threads_bot_renaisher2.py
 threads_bot_kailaaak72.py
 threads_bot_avelinefinds.py"
@@ -133,8 +132,7 @@ home = sys.argv[1]
 with open(f"{home}/accounts.txt") as f:
     active = f.read()
 acct_port = {
-    "oliviapicks": 9222, "lanadealsrey": 9223, "selenasupply": 9225,
-    "renaisher2": 9226, "kailaaak72": 9227, "avelinefinds": 9228,
+    "oliviapicks": 9222, "lanadealsrey": 9223,     "renaisher2": 9226, "kailaaak72": 9227, "avelinefinds": 9228,
 }
 active_ports = [p for a, p in acct_port.items() if a in active]
 wd_path = f"{home}/watchdog_threads.py"
@@ -163,13 +161,12 @@ sleep 15
 declare -A COOKIE_MAP=(
     [9222]=oliviapicks
     [9223]=lanadealsrey
-    [9225]=selenasupply
     [9226]=renaisher2
     [9227]=kailaaak72
     [9228]=avelinefinds
 )
 ACTIVE_LIST=$(cat accounts.txt)
-for port in 9222 9223 9225 9226 9227 9228; do
+for port in 9222 9223 9226 9227 9228; do
     acct="${COOKIE_MAP[$port]}"
     if ! echo "$ACTIVE_LIST" | grep -q "$acct"; then
         continue

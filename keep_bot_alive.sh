@@ -11,7 +11,7 @@ PY=/usr/bin/python3
 if [ -f accounts.txt ]; then
     BOTS=$(cat accounts.txt | tr '\n' ' ')
 else
-    BOTS="threads_bot_oliviapicks.py threads_bot_lanadealsrey.py threads_bot_selenasupply.py threads_bot_renaisher2.py threads_bot_kailaaak72.py threads_bot_avelinefinds.py"
+    BOTS="threads_bot_oliviapicks.py threads_bot_lanadealsrey.py  threads_bot_renaisher2.py threads_bot_kailaaak72.py threads_bot_avelinefinds.py"
 fi
 
 for script in $BOTS; do

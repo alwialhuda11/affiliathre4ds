@@ -178,7 +178,7 @@ def restart_chrome(port: int) -> bool:
                    capture_output=True, timeout=10)
     time.sleep(3)
     import pathlib as _pl
-    profile_map = {9222:"chrome-profile-bot",9223:"chrome-profile-lanadealsrey2",9225:"chrome-profile-selenasupply",9226:"chrome-profile-renaisher",9227:"chrome-profile-kailaaak7",9228:"chrome-profile-avelinefinds"}
+    profile_map = {9222:"chrome-profile-bot",9223:"chrome-profile-lanadealsrey2",9226:"chrome-profile-renaisher",9227:"chrome-profile-kailaaak7",9228:"chrome-profile-avelinefinds"}
     prof = profile_map.get(port)
     if prof:
         for name in ("SingletonLock","SingletonCookie","SingletonSocket"):
@@ -211,9 +211,9 @@ def restart_chrome(port: int) -> bool:
 
 def clean_old_singletons():
     import pathlib as _pl
-    for port in (9222,9223,9225,9226,9227,9228):
+    for port in (9222,9223,9226,9227,9228):
         if not chrome_running(port):
-            prof = {9222:"chrome-profile-bot",9223:"chrome-profile-lanadealsrey2",9225:"chrome-profile-selenasupply",9226:"chrome-profile-renaisher",9227:"chrome-profile-kailaaak7",9228:"chrome-profile-avelinefinds"}.get(port)
+            prof = {9222:"chrome-profile-bot",9223:"chrome-profile-lanadealsrey2",9226:"chrome-profile-renaisher",9227:"chrome-profile-kailaaak7",9228:"chrome-profile-avelinefinds"}.get(port)
             if prof:
                 for name in ("SingletonLock","SingletonCookie","SingletonSocket"):
                     try:
@@ -223,11 +223,11 @@ def clean_old_singletons():
 
 
 def main() -> None:
-    log("Watchdog Threads v2 dimulai — cek port 9222,9223,9225,9226,9227,9228 tiap 5 menit (service mode)")
+    log("Watchdog Threads v2 dimulai — cek port 9222,9223,9226,9227,9228 tiap 5 menit (service mode)")
     clean_old_singletons()
 
     while True:
-        for port in (9222, 9223, 9225, 9226, 9227, 9228):
+        for port in (9222, 9223, 9226, 9227, 9228):
             if ws_healthy(port):
                 continue
             log(f"⚠️ Port {port}: websocket mati")

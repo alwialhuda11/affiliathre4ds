@@ -1,0 +1,320 @@
+{
+  "skincare": {
+    "moisturizer": {
+      "hooks": [
+        "Skin jadi lebih lembap sejak pake ini",
+        "Moisturizer ini ringan banget di wajah",
+        "Buat kamu yg kulitnya kering, cocok coba ini"
+      ],
+      "bodies": [
+        "teksturnya gak lengket, gampang nyerap",
+        "pagi malem aman dipake, gak bikin berminyak",
+        "bikin kulit tetep kenyal seharian"
+      ],
+      "closings": [
+        "worth it buat daily moisturizer",
+        "gak nyesel nyobain moisturizer ini",
+        "bagus buat masukin ke routine skincare"
+      ]
+    },
+    "retinol": {
+      "hooks": [
+        "Retinol ini pelan-pelan bikin tekstur kulit rata",
+        "Buat yg lagi mau mulai retinol, ini oke",
+        "Retinol routine ku sekarang pake ini"
+      ],
+      "bodies": [
+        "gak terlalu keras di kulit, cocok pemula",
+        "bikin wajah keliatan lebih cerah dan halus",
+        "dipakai malam aja, paginya aman"
+      ],
+      "closings": [
+        "cocok buat yg mau mulai anti aging",
+        "bisa jadi pilihan retinol pertamamu",
+        "worth dicoba buat skincare routine"
+      ]
+    },
+    "sunscreen": {
+      "hooks": [
+        "Sunscreen ini gak bikin whitecast",
+        "Kulit aman dari sunburn sejak pake ini",
+        "Sunscreen wajib yg gak bikin kusam"
+      ],
+      "bodies": [
+        "teksturnya ringan, gak lengket",
+        "SPF-nya ngecover seharian",
+        "enak dipake sebelum keluar rumah"
+      ],
+      "closings": [
+        "wajib ada di tas buat outdoor",
+        "jangan lupa reapply biar maksimal",
+        "worth buat jaga kulit dari sinar matahari"
+      ]
+    },
+    "acne": {
+      "hooks": [
+        "Jerawatku mereda sejak rutin pake ini",
+        "Buat yg lagi struggle jerawat, coba ini",
+        "Acne treatment yg lagi aku andelin"
+      ],
+      "bodies": [
+        "gak bikin kulit kering",
+        "bantu ngurangin breakout",
+        "cocok buat kulit berminyak & berjerawat"
+      ],
+      "closings": [
+        "sabaran, hasilnya gak instan tapi oke",
+        "bisa jadi andalan buat jerawat",
+        "worth dicoba kalau jerawat ganggu"
+      ]
+    }
+  },
+  "makeup": {
+    "liptint": {
+      "hooks": [
+        "Liptint ini warnanya pigmented banget",
+        "Buat bibir, tint ini tahan lama",
+        "Lippie andalan yg gak gampang ilang"
+      ],
+      "bodies": [
+        "gak bikin kering, ada sheer tintnya",
+        "warnanya natural, cocok daily",
+        "sekali pulas langsung keliatan"
+      ],
+      "closings": [
+        "worth it buat koleksi makeup",
+        "cocok buat gaya natural",
+        "gak nyesel beli ini"
+      ]
+    },
+    "cushion": {
+      "hooks": [
+        "Cushion ini coverage-nya oke tapi tetep ringan",
+        "Buat base makeup, cushion ini juara",
+        "Cushion yg bikin wajah flawless"
+      ],
+      "bodies": [
+        "gak cakey, gak bikin pori makin kelihatan",
+        "dari pagi sampe sore aman",
+        "finish-nya dewy natural"
+      ],
+      "closings": [
+        "wajib ada buat daily makeup",
+        "worth it buat hasil softglam",
+        "cocok buat kulit berminyak sekalipun"
+      ]
+    },
+    "setting_spray": {
+      "hooks": [
+        "Setting spray ini bikin makeup awet seharian",
+        "Makeup gak luntur sejak pake spray ini",
+        "Buat locking makeup, ini andalan"
+      ],
+      "bodies": [
+        "gak bikin lengket di wajah",
+        "bikin makeup tahan sampe malem",
+        "pastiin hasilnya natural glow"
+      ],
+      "closings": [
+        "must have buat yang makeup-an tiap hari",
+        "worth it biar makeup gak luntur",
+        "cocok buat acara seharian"
+      ]
+    }
+  },
+  "parfum": {
+    "unisex": {
+      "hooks": [
+        "Parfum ini wanginya fresh tapi gak nyolok",
+        "Buat daily wear, wangi ini pas",
+        "Parfum andalan yg gak bikin pusing"
+      ],
+      "bodies": [
+        "tahan lama di baju",
+        "wangi kayak baru mandi",
+        "cocok buat pria & wanita"
+      ],
+      "closings": [
+        "worth it buat koleksi parfum",
+        "gak nyesel, wanginya beda dari yg lain",
+        "cocok buat keseharian"
+      ]
+    },
+    "body_mist": {
+      "hooks": [
+        "Body mist ini wanginya fresh ringan",
+        "Buat seger-segeran, body mist ini pas",
+        "Wanginya enak buat aktivitas harian"
+      ],
+      "bodies": [
+        "gak terlalu nyengat, enak di kulit",
+        "bikin seger seharian",
+        "cocok buat santai di rumah"
+      ],
+      "closings": [
+        "worth it, harganya friendly",
+        "bisa buat restock rutin",
+        "enak dipake abis mandi"
+      ]
+    }
+  },
+  "haircare": {
+    "hair_serum": {
+      "hooks": [
+        "Hair serum ini bikin rambut lebih halus",
+        "Rambut gak kusut sejak pake serum ini",
+        "Serum rambut yg lagi aku pake tiap hari"
+      ],
+      "bodies": [
+        "gak bikin lepek atau berminyak",
+        "bantu ngurangin rambut kering",
+        "tinggal dipump dikit aja udah cukup"
+      ],
+      "closings": [
+        "worth it buat rambut rusak",
+        "cocok buat yg suka catok/blow",
+        "gak nyesel nyobain"
+      ]
+    },
+    "dry_shampoo": {
+      "hooks": [
+        "Dry shampoo ini lifesaver buat rambut lepek",
+        "Rambut cepet berminyak? Coba ini",
+        "Dry shampoo andalan buat yg jarang keramas"
+      ],
+      "bodies": [
+        "bikin rambut seger lagi",
+        "gak ninggalin bubuk putih",
+        "tinggal semprot, ratain, beres"
+      ],
+      "closings": [
+        "worth it buat yg sibuk",
+        "cocok buat travel/outdoor",
+        "must have di tas"
+      ]
+    },
+    "scalp_tonic": {
+      "hooks": [
+        "Scalp tonic ini bikin kulit kepala lebih sehat",
+        "Buat yg lagi perhatiin kesehatan rambut",
+        "Tonic kulit kepala yg lagi aku pakai"
+      ],
+      "bodies": [
+        "terasa seger abis dipake",
+        "gak bikin kulit kepala gatal",
+        "mudah diratain ke akar rambut"
+      ],
+      "closings": [
+        "worth it buat perawatan rambut",
+        "cocok buat yg rambutnya mulai rontok",
+        "bisa jadi rutinitas baru"
+      ]
+    }
+  },
+  "bodycare": {
+    "body_lotion": {
+      "hooks": [
+        "Body lotion ini bikin kulit badan lebih lembut",
+        "Kulit kering? Body lotion ini jawabannya",
+        "Lotion badan yg enak banget dipake"
+      ],
+      "bodies": [
+        "gak lengket, cepet nyerap",
+        "bau wanginya enak gak nyengat",
+        "bikin kulit halus seharian"
+      ],
+      "closings": [
+        "worth it buat kulit kering",
+        "cocok buat daily abis mandi",
+        "gak nyesel, kulit jadi makin halus"
+      ]
+    },
+    "lip_balm": {
+      "hooks": [
+        "Lip balm ini bikin bibir gak kering",
+        "Buat bibir pecah-pecah, ini nolong banget",
+        "Lip balm andalan yg bikin bibir lembap"
+      ],
+      "bodies": [
+        "gak lengket, enak dipake",
+        "mudah nyerap ke bibir",
+        "bisa dipake sebelum lipstick"
+      ],
+      "closings": [
+        "worth it buat bibir kering",
+        "cocok buat dibawa kemana-mana",
+        "gak nyesel, bibir jadi halus"
+      ]
+    },
+    "scrub": {
+      "hooks": [
+        "Body scrub ini bikin kulit makin halus",
+        "Eksfoliasi badan jadi enak sejak pake ini",
+        "Scrub yg bikin kulit bersih & mulus"
+      ],
+      "bodies": [
+        "butirannya lembut gak nyakitin",
+        "bikin kulit lebih cerah",
+        "enak banget buat scrub mingguan"
+      ],
+      "closings": [
+        "worth it buat perawatan badan",
+        "cocok buat kulit kusam",
+        "gak nyesel, kulit jadi halus"
+      ]
+    }
+  },
+  "health": {
+    "collagen": {
+      "hooks": [
+        "Collagen ini bikin kulit lebih kencang",
+        "Buat yg lagi perhatiin kesehatan kulit",
+        "Suplemen collagen yg lagi aku rutin pake"
+      ],
+      "bodies": [
+        "gampang larut & diminum",
+        "gak ada rasa aneh",
+        "bikin kulit terasa lebih lembap"
+      ],
+      "closings": [
+        "worth it buat perawatan dari dalam",
+        "cocok buat daily supplement",
+        "gak nyesel rutin konsumsi"
+      ]
+    },
+    "vitamin_c": {
+      "hooks": [
+        "Vitamin C ini bantu jaga imun & kulit",
+        "Buat yg mau glowing dari dalam",
+        "Suplemen vitamin C yg enak diminum"
+      ],
+      "bodies": [
+        "rasanya enak gak pahit",
+        "gampang dikonsumsi tiap hari",
+        "bantu kulit keliatan lebih cerah"
+      ],
+      "closings": [
+        "worth it buat daily vitamin",
+        "cocok buat jaga daya tahan tubuh",
+        "gak nyesel rutin minum"
+      ]
+    },
+    "probiotik": {
+      "hooks": [
+        "Probiotik ini bantu jaga kesehatan pencernaan",
+        "Buat yg lagi perhatiin usus & lambung",
+        "Suplemen probiotik yg lagi aku pake"
+      ],
+      "bodies": [
+        "gampang diminum tiap hari",
+        "bantu pencernaan lebih lancar",
+        "gak bikin perut gak enak"
+      ],
+      "closings": [
+        "worth it buat jaga pencernaan",
+        "cocok buat rutinitas sehat",
+        "gak nyesel, badan lebih enak"
+      ]
+    }
+  }
+}

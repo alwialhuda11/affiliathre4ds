@@ -110,7 +110,7 @@ threads_bot_kailaaak72.py
 threads_bot_avelinefinds.py"
 THREE_ACCOUNTS="threads_bot_avelinefinds.py
 threads_bot_oliviapicks.py
-threads_bot_selenasupply.py"
+threads_bot_renaisher2.py"
 
 if [ "$AVAIL_MB" -lt 1200 ]; then
     log "RAM available ${AVAIL_MB}MB -> jalanin 3 akun aja (accounts.txt)"
@@ -124,7 +124,7 @@ log "accounts.txt:"
 cat accounts.txt
 
 # ── 6b. Patch watchdog: Chrome akun inactive GAK di-launch ──
-# Port mapping: oliviapicks=9222 lanadealsrey=9223 selenasupply=9225
+# Port mapping: oliviapicks=9222 lanadealsrey=9223
 #               renaisher2=9226 kailaaak72=9227 avelinefinds=9228
 sudo -u ubuntu /usr/bin/python3 - "$VPS_HOME" <<'PYEOF'
 import sys, re
